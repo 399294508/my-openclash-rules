@@ -1,8 +1,7 @@
 # ============================================================
-# 规则提供者（从 GitHub 拉取规则集）
+# 规则提供者
 # ============================================================
 rule-providers:
-  # 自定义 GitHub 规则
   my_github_rules:
     type: http
     behavior: domain
@@ -11,44 +10,10 @@ rule-providers:
     path: ./ruleset/my_github_rules.txt
     interval: 86400
 
-  # GeoSite 分类
-  geosite_cn:
-    type: http
-    behavior: domain
-    format: mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"
-    path: ./ruleset/cn.mrs
-    interval: 86400
-
-  geosite_google:
-    type: http
-    behavior: domain
-    format: mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"
-    path: ./ruleset/google.mrs
-    interval: 86400
-
-  geosite_netflix:
-    type: http
-    behavior: domain
-    format: mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"
-    path: ./ruleset/netflix.mrs
-    interval: 86400
-
-  geosite_youtube:
-    type: http
-    behavior: domain
-    format: mrs
-    url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"
-    path: ./ruleset/youtube.mrs
-    interval: 86400
-
 # ============================================================
 # 策略组定义
 # ============================================================
 proxy-groups:
-  # ---------- 基础策略组 ----------
   - name: "🚀 节点选择"
     type: select
     proxies:
@@ -65,12 +30,12 @@ proxy-groups:
   - name: "🚀 手动切换"
     type: select
     proxies:
-      - "*"
+      - DIRECT
 
   - name: "♻️ 自动选择"
     type: url-test
     proxies:
-      - "*"
+      - DIRECT
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -87,7 +52,6 @@ proxy-groups:
       - "🚀 节点选择"
       - DIRECT
 
-  # ---------- 地区节点组 ----------
   - name: "🇭🇰 香港节点"
     type: url-test
     proxies:
@@ -143,7 +107,6 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-  # ---------- 功能策略组 ----------
   - name: "🛑 广告拦截"
     type: select
     proxies:
@@ -252,7 +215,7 @@ proxy-groups:
 # 规则定义
 # ============================================================
 rules:
-  # 自定义域名规则
+  # 自定义域名规则（策略组名称必须与上面定义的一致）
   - DOMAIN,sehuatang.net,"♻️ 自动选择"
   - DOMAIN-KEYWORD,plex,DIRECT
   - DOMAIN-SUFFIX,jdbstatic.com,"🇭🇰 香港节点"
