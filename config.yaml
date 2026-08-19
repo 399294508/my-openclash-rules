@@ -330,7 +330,9 @@ rule-providers:
     path: ./ruleset/Download.list
     interval: 86400
 
-# ---------- 策略组定义（对标 Surge 分组逻辑） ----------
+# ============================================================
+# 策略组定义（通配符已修正）
+# ============================================================
 proxy-groups:
   # 主策略组
   - name: "🚀 节点选择"
@@ -349,12 +351,28 @@ proxy-groups:
   - name: "🚀 手动切换"
     type: select
     proxies:
-      - "*"
+      - "♻️ 自动选择"
+      - "🇭🇰 香港节点"
+      - "🇨🇳 台湾节点"
+      - "🇸🇬 狮城节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - DIRECT
 
   - name: "♻️ 自动选择"
     type: url-test
     proxies:
-      - "*"
+      - "*香港*"
+      - "*HK*"
+      - "*美国*"
+      - "*US*"
+      - "*日本*"
+      - "*JP*"
+      - "*新加坡*"
+      - "*SG*"
+      - "*台湾*"
+      - "*TW*"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -427,7 +445,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-  # 功能策略组（对标 Surge 的策略组）
+  # 功能策略组
   - name: "🛑 广告拦截"
     type: select
     proxies:
