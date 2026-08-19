@@ -1,69 +1,12 @@
-# ============================================================
-# 规则定义（只包含规则，策略组由 OpenClash 覆写模块管理）
-# ============================================================
-
-# ---------- 自定义域名 ----------
-- DOMAIN,sehuatang.net,"♻️ 自动选择"
-- DOMAIN-KEYWORD,plex,DIRECT
-- DOMAIN-SUFFIX,jdbstatic.com,"🇭🇰 香港节点"
-- DOMAIN-SUFFIX,dmm.co.jp,"🇯🇵 日本节点"
-- DOMAIN-SUFFIX,totheglory.im,DIRECT
-- DOMAIN-SUFFIX,xboxlive.com,DIRECT
-
-# ---------- TikTok ----------
-- DOMAIN-KEYWORD,tiktok,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,tiktok.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,tiktokv.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,tiktokcdn.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,tiktokcdn-us.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,byteoversea.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,bytedance.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,bytedance.net,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,ibyteimg.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,ipstatp.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,muscdn.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,musical.ly,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,ttlivecdn.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,ttwstatic.com,"🇺🇲 美国节点"
-- DOMAIN-SUFFIX,byteimg.com,"🇺🇲 美国节点"
-- DOMAIN,www.anmo.life,"♻️ 自动选择"
-- DOMAIN,javdb.com,"🇸🇬 狮城节点"
-- DOMAIN,php.17186.eu.org,"♻️ 自动选择"
-- DOMAIN,wwjtv.jzpf.top,"♻️ 自动选择"
-- DOMAIN,php.17186.eu.org,DIRECT
-
-# ---------- ACL4SSR 规则集 ----------
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list,"🎯 全球直连"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list,"🎯 全球直连"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list,"🛑 广告拦截"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list,"🍃 应用净化"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list,"📢 谷歌FCM"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list,"🎯 全球直连"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list,"🎯 全球直连"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list,"Ⓜ️ 微软Bing"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list,"Ⓜ️ 微软云盘"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list,"Ⓜ️ 微软服务"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list,"🍎 苹果服务"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list,"📲 电报消息"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/AI.list,"💬 Ai平台"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list,"💬 Ai平台"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/NetEaseMusic.list,"🎶 网易音乐"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Epic.list,"🎮 游戏平台"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Origin.list,"🎮 游戏平台"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Sony.list,"🎮 游戏平台"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Steam.list,"🎮 游戏平台"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Nintendo.list,"🎮 游戏平台"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list,"📹 油管视频"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list,"🎥 奈飞视频"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bahamut.list,"📺 巴哈姆特"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list,"📺 哔哩哔哩"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list,"📺 哔哩哔哩"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list,"🌏 国内媒体"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list,"🌍 国外媒体"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list,"🚀 节点选择"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list,"🎯 全球直连"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list,"🎯 全球直连"
-- RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list,"🎯 全球直连"
-
-# ---------- 最终兜底 ----------
+- DOMAIN-SUFFIX,google.com,PROXY
+- DOMAIN-SUFFIX,youtube.com,PROXY
+- DOMAIN-SUFFIX,netflix.com,PROXY
+- DOMAIN-SUFFIX,twitter.com,PROXY
+- DOMAIN-SUFFIX,facebook.com,PROXY
+- DOMAIN-SUFFIX,instagram.com,PROXY
+- DOMAIN-SUFFIX,telegram.org,PROXY
+- DOMAIN-SUFFIX,github.com,PROXY
+- DOMAIN-SUFFIX,baidu.com,DIRECT
+- DOMAIN-SUFFIX,taobao.com,DIRECT
+- DOMAIN-SUFFIX,jd.com,DIRECT
 - MATCH,🐟 漏网之鱼
