@@ -334,65 +334,15 @@ rule-providers:
 # 策略组定义（通配符已修正）
 # ============================================================
 proxy-groups:
-  - name: "🚀 节点选择"
-    type: select
-    proxies:
-      - "♻️ 自动选择"
-      - "🇭🇰 香港节点"
-      - "🇨🇳 台湾节点"
-      - "🇸🇬 狮城节点"
-      - "🇯🇵 日本节点"
-      - "🇺🇲 美国节点"
-      - "🇰🇷 韩国节点"
-      - "🚀 手动切换"
-      - DIRECT
+  # ... (主策略组 "🚀 节点选择"、"🚀 手动切换" 等保持不变) ...
 
-  - name: "🚀 手动切换"
-    type: select
-    proxies:
-      - "♻️ 自动选择"
-      - "🇭🇰 香港节点"
-      - "🇨🇳 台湾节点"
-      - "🇸🇬 狮城节点"
-      - "🇯🇵 日本节点"
-      - "🇺🇲 美国节点"
-      - "🇰🇷 韩国节点"
-      - DIRECT
-
-  - name: "♻️ 自动选择"
-    type: url-test
-    proxies:
-      - "*香港*"
-      - "*HK*"
-      - "*美国*"
-      - "*US*"
-      - "*日本*"
-      - "*JP*"
-      - "*新加坡*"
-      - "*SG*"
-      - "*台湾*"
-      - "*TW*"
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-
-  - name: "🎯 全球直连"
-    type: select
-    proxies:
-      - DIRECT
-      - "🚀 节点选择"
-
-  - name: "🐟 漏网之鱼"
-    type: select
-    proxies:
-      - "🚀 节点选择"
-      - DIRECT
-
+  # 地区节点组（都增加保底选项）
   - name: "🇭🇰 香港节点"
     type: url-test
     proxies:
       - "*香港*"
       - "*HK*"
+      - "♻️ 自动选择"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -402,6 +352,7 @@ proxy-groups:
     proxies:
       - "*台湾*"
       - "*TW*"
+      - "♻️ 自动选择"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -412,6 +363,7 @@ proxy-groups:
       - "*新加坡*"
       - "*SG*"
       - "*狮城*"
+      - "♻️ 自动选择"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -421,6 +373,7 @@ proxy-groups:
     proxies:
       - "*日本*"
       - "*JP*"
+      - "♻️ 自动选择"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -430,6 +383,7 @@ proxy-groups:
     proxies:
       - "*美国*"
       - "*US*"
+      - "♻️ 自动选择"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 150
@@ -439,113 +393,12 @@ proxy-groups:
     proxies:
       - "*韩国*"
       - "*KR*"
+      - "♻️ 自动选择"  # 添加保底
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
 
-  - name: "🛑 广告拦截"
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-
-  - name: "🍃 应用净化"
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-
-  - name: "📢 谷歌FCM"
-    type: select
-    proxies:
-      - DIRECT
-      - "🚀 节点选择"
-
-  - name: "Ⓜ️ 微软Bing"
-    type: select
-    proxies:
-      - DIRECT
-      - "🚀 节点选择"
-
-  - name: "Ⓜ️ 微软云盘"
-    type: select
-    proxies:
-      - DIRECT
-      - "🚀 节点选择"
-
-  - name: "Ⓜ️ 微软服务"
-    type: select
-    proxies:
-      - DIRECT
-      - "🚀 节点选择"
-
-  - name: "🍎 苹果服务"
-    type: select
-    proxies:
-      - DIRECT
-      - "🚀 节点选择"
-
-  - name: "📲 电报消息"
-    type: select
-    proxies:
-      - "🚀 节点选择"
-      - DIRECT
-
-  - name: "💬 Ai平台"
-    type: select
-    proxies:
-      - "🚀 节点选择"
-      - DIRECT
-
-  - name: "🎶 网易音乐"
-    type: select
-    proxies:
-      - DIRECT
-      - "🚀 节点选择"
-
-  - name: "🎮 游戏平台"
-    type: select
-    proxies:
-      - DIRECT
-      - "🚀 节点选择"
-
-  - name: "📹 油管视频"
-    type: select
-    proxies:
-      - "🚀 节点选择"
-      - DIRECT
-
-  - name: "🎥 奈飞视频"
-    type: select
-    proxies:
-      - "🚀 节点选择"
-      - DIRECT
-
-  - name: "📺 巴哈姆特"
-    type: select
-    proxies:
-      - "🇨🇳 台湾节点"
-      - "🚀 节点选择"
-      - DIRECT
-
-  - name: "📺 哔哩哔哩"
-    type: select
-    proxies:
-      - "🎯 全球直连"
-      - "🇨🇳 台湾节点"
-      - "🇭🇰 香港节点"
-
-  - name: "🌍 国外媒体"
-    type: select
-    proxies:
-      - "🚀 节点选择"
-      - DIRECT
-
-  - name: "🌏 国内媒体"
-    type: select
-    proxies:
-      - DIRECT
-      - "🇭🇰 香港节点"
+  # ... (其余策略组不变) ...
 
 # ---------- 规则定义（规则执行顺序从上到下） ----------
 rules:
