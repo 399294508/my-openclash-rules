@@ -1,5 +1,5 @@
 # ============================================================
-# OpenClash 完整配置（对标 Surge 规则体系）
+# OpenClash 完整配置（策略组使用真实节点名）
 # ============================================================
 
 # ---------- 基础设置 ----------
@@ -72,7 +72,6 @@ dns:
 
 # ---------- 规则提供者 ----------
 rule-providers:
-  # 1. 你的自定义规则（从 rules.txt 拉取）
   my_github_rules:
     type: http
     behavior: domain
@@ -81,7 +80,6 @@ rule-providers:
     path: ./ruleset/my_github_rules.txt
     interval: 86400
 
-  # 2. ACL4SSR 规则集（和 Surge 一样的在线规则源）
   LocalAreaNetwork:
     type: http
     behavior: domain
@@ -331,18 +329,76 @@ rule-providers:
     interval: 86400
 
 # ============================================================
-# 策略组定义（通配符已修正）
+# 策略组定义（使用真实节点名，无通配符）
 # ============================================================
 proxy-groups:
-  # ... (主策略组 "🚀 节点选择"、"🚀 手动切换" 等保持不变) ...
+  # ---------- 主策略组 ----------
+  - name: "🚀 节点选择"
+    type: select
+    proxies:
+      - "♻️ 自动选择"
+      - "🇭🇰 香港节点"
+      - "🇨🇳 台湾节点"
+      - "🇸🇬 狮城节点"
+      - "🇯🇵 日本节点"
+      - "🇺🇲 美国节点"
+      - "🇰🇷 韩国节点"
+      - "🚀 手动切换"
+      - DIRECT
 
-  # 地区节点组（都增加保底选项）
+  - name: "🚀 手动切换"
+    type: select
+    proxies:
+      - "🇭🇰 香港-实验线路 BGP"
+      - "🇭🇰 香港-广东专线 BGP 1"
+      - "🇺🇸 美国-实验线路 BGP"
+      - "🇺🇸 美国-直连线路 BGP"
+      - "🇯🇵 日本-实验线路 BGP"
+      - "🇸🇬 新加坡-实验线路 BGP"
+      - "🇹🇼 台湾-实验线路 NeaRoute"
+      - DIRECT
+
+  - name: "♻️ 自动选择"
+    type: url-test
+    proxies:
+      - "🇭🇰 香港-实验线路 BGP"
+      - "🇭🇰 香港-广东专线 BGP 1"
+      - "🇭🇰 香港-广东专线 BGP 2"
+      - "🇺🇸 美国-实验线路 BGP"
+      - "🇺🇸 美国-直连线路 BGP"
+      - "🇯🇵 日本-实验线路 BGP"
+      - "🇸🇬 新加坡-实验线路 BGP"
+      - "🇹🇼 台湾-实验线路 NeaRoute"
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+
+  - name: "🎯 全球直连"
+    type: select
+    proxies:
+      - DIRECT
+      - "🚀 节点选择"
+
+  - name: "🐟 漏网之鱼"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - DIRECT
+
+  # ---------- 地区节点组 ----------
   - name: "🇭🇰 香港节点"
     type: url-test
     proxies:
-      - "*香港*"
-      - "*HK*"
-      - "♻️ 自动选择"
+      - "🇭🇰 香港-实验线路 BGP"
+      - "🇭🇰 香港-广东专线 BGP 1"
+      - "🇭🇰 香港-广东专线 BGP 2"
+      - "🇭🇰 香港-直连线路 BGP"
+      - "🇭🇰 香港-广东专线 Akari"
+      - "🇭🇰 香港-广东专线 NeaRoute"
+      - "🇭🇰 香港-广东专线 HKBN"
+      - "🇭🇰 香港-广东专线 HGC"
+      - "🇭🇰 香港-广东专线 HKT"
+      - "🇭🇰 香港-广东专线 GCore"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -350,9 +406,9 @@ proxy-groups:
   - name: "🇨🇳 台湾节点"
     type: url-test
     proxies:
-      - "*台湾*"
-      - "*TW*"
-      - "♻️ 自动选择"
+      - "🇹🇼 台湾-实验线路 NeaRoute"
+      - "🇹🇼 台湾-广东专线 NeaRoute"
+      - "🇹🇼 台湾-广东专线 STUIX"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -360,10 +416,8 @@ proxy-groups:
   - name: "🇸🇬 狮城节点"
     type: url-test
     proxies:
-      - "*新加坡*"
-      - "*SG*"
-      - "*狮城*"
-      - "♻️ 自动选择"
+      - "🇸🇬 新加坡-实验线路 BGP"
+      - "🇸🇬 新加坡-广东专线 BGP"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -371,9 +425,10 @@ proxy-groups:
   - name: "🇯🇵 日本节点"
     type: url-test
     proxies:
-      - "*日本*"
-      - "*JP*"
-      - "♻️ 自动选择"
+      - "🇯🇵 日本-实验线路 BGP"
+      - "🇯🇵 日本-广东专线 BGP"
+      - "🇯🇵 日本-广东专线 Akari"
+      - "🇯🇵 日本-广东专线 GCore"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -381,9 +436,12 @@ proxy-groups:
   - name: "🇺🇲 美国节点"
     type: url-test
     proxies:
-      - "*美国*"
-      - "*US*"
-      - "♻️ 自动选择"
+      - "🇺🇸 美国-实验线路 BGP"
+      - "🇺🇸 美国-直连线路 BGP"
+      - "🇺🇸 美国-广东专线 BGP 1"
+      - "🇺🇸 美国-广东专线 BGP 2"
+      - "🇺🇸 美国-广东专线 DAOport"
+      - "🇺🇸 美国-广东专线 GCore"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 150
@@ -391,46 +449,132 @@ proxy-groups:
   - name: "🇰🇷 韩国节点"
     type: url-test
     proxies:
-      - "*韩国*"
-      - "*KR*"
-      - "♻️ 自动选择"  # 添加保底
+      - "🇰🇷 韩国-广东专线 VUKR"
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
 
-  # ... (其余策略组不变) ...
+  # ---------- 功能策略组 ----------
+  - name: "🛑 广告拦截"
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
 
-# ---------- 规则定义（规则执行顺序从上到下） ----------
+  - name: "🍃 应用净化"
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+
+  - name: "📢 谷歌FCM"
+    type: select
+    proxies:
+      - DIRECT
+      - "🚀 节点选择"
+
+  - name: "Ⓜ️ 微软Bing"
+    type: select
+    proxies:
+      - DIRECT
+      - "🚀 节点选择"
+
+  - name: "Ⓜ️ 微软云盘"
+    type: select
+    proxies:
+      - DIRECT
+      - "🚀 节点选择"
+
+  - name: "Ⓜ️ 微软服务"
+    type: select
+    proxies:
+      - DIRECT
+      - "🚀 节点选择"
+
+  - name: "🍎 苹果服务"
+    type: select
+    proxies:
+      - DIRECT
+      - "🚀 节点选择"
+
+  - name: "📲 电报消息"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - DIRECT
+
+  - name: "💬 Ai平台"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - DIRECT
+
+  - name: "🎶 网易音乐"
+    type: select
+    proxies:
+      - DIRECT
+      - "🚀 节点选择"
+
+  - name: "🎮 游戏平台"
+    type: select
+    proxies:
+      - DIRECT
+      - "🚀 节点选择"
+
+  - name: "📹 油管视频"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - DIRECT
+
+  - name: "🎥 奈飞视频"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - DIRECT
+
+  - name: "📺 巴哈姆特"
+    type: select
+    proxies:
+      - "🇨🇳 台湾节点"
+      - "🚀 节点选择"
+      - DIRECT
+
+  - name: "📺 哔哩哔哩"
+    type: select
+    proxies:
+      - "🎯 全球直连"
+      - "🇨🇳 台湾节点"
+      - "🇭🇰 香港节点"
+
+  - name: "🌍 国外媒体"
+    type: select
+    proxies:
+      - "🚀 节点选择"
+      - DIRECT
+
+  - name: "🌏 国内媒体"
+    type: select
+    proxies:
+      - DIRECT
+      - "🇭🇰 香港节点"
+
+# ---------- 规则定义 ----------
 rules:
-  # 1. 自定义规则（优先级最高）
   - RULE-SET,my_github_rules,PROXY
-
-  # 2. 局域网/直连
   - RULE-SET,LocalAreaNetwork,"🎯 全球直连"
   - RULE-SET,UnBan,"🎯 全球直连"
-
-  # 3. 广告拦截
   - RULE-SET,BanAD,"🛑 广告拦截"
   - RULE-SET,BanProgramAD,"🍃 应用净化"
-
-  # 4. Google 服务
   - RULE-SET,GoogleFCM,"📢 谷歌FCM"
   - RULE-SET,GoogleCN,"🎯 全球直连"
-
-  # 5. 微软服务
   - RULE-SET,Bing,"Ⓜ️ 微软Bing"
   - RULE-SET,OneDrive,"Ⓜ️ 微软云盘"
   - RULE-SET,Microsoft,"Ⓜ️ 微软服务"
-
-  # 6. Apple 服务
   - RULE-SET,Apple,"🍎 苹果服务"
-
-  # 7. 电报/AI
   - RULE-SET,Telegram,"📲 电报消息"
   - RULE-SET,AI,"💬 Ai平台"
   - RULE-SET,OpenAi,"💬 Ai平台"
-
-  # 8. 音乐/游戏
   - RULE-SET,NetEaseMusic,"🎶 网易音乐"
   - RULE-SET,Epic,"🎮 游戏平台"
   - RULE-SET,Origin,"🎮 游戏平台"
@@ -438,8 +582,6 @@ rules:
   - RULE-SET,Steam,"🎮 游戏平台"
   - RULE-SET,SteamCN,"🎯 全球直连"
   - RULE-SET,Nintendo,"🎮 游戏平台"
-
-  # 9. 视频/媒体
   - RULE-SET,YouTube,"📹 油管视频"
   - RULE-SET,Netflix,"🎥 奈飞视频"
   - RULE-SET,Bahamut,"📺 巴哈姆特"
@@ -447,17 +589,9 @@ rules:
   - RULE-SET,Bilibili,"📺 哔哩哔哩"
   - RULE-SET,ChinaMedia,"🌏 国内媒体"
   - RULE-SET,ProxyMedia,"🌍 国外媒体"
-
-  # 10. GFW 代理列表
   - RULE-SET,ProxyGFWlist,"🚀 节点选择"
-
-  # 11. 国内直连
   - RULE-SET,ChinaDomain,"🎯 全球直连"
   - RULE-SET,ChinaCompanyIp,"🎯 全球直连"
   - RULE-SET,Download,"🎯 全球直连"
-
-  # 12. GeoIP（国家/地区匹配）
   - GEOIP,CN,"🎯 全球直连"
-
-  # 13. 最终兜底
   - MATCH,🐟 漏网之鱼
