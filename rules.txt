@@ -1,8 +1,8 @@
 # ============================================================
-# 规则定义（只包含规则，策略组由 OpenClash 覆写模块管理）
+# 规则定义（只包含规则，策略组由覆写模块管理）
 # ============================================================
 
-# 自定义域名规则
+# ---------- 自定义域名 ----------
 - DOMAIN,sehuatang.net,"♻️ 自动选择"
 - DOMAIN-KEYWORD,plex,DIRECT
 - DOMAIN-SUFFIX,jdbstatic.com,"🇭🇰 香港节点"
@@ -10,7 +10,7 @@
 - DOMAIN-SUFFIX,totheglory.im,DIRECT
 - DOMAIN-SUFFIX,xboxlive.com,DIRECT
 
-# TikTok
+# ---------- TikTok ----------
 - DOMAIN-KEYWORD,tiktok,"🇺🇲 美国节点"
 - DOMAIN-SUFFIX,tiktok.com,"🇺🇲 美国节点"
 - DOMAIN-SUFFIX,tiktokv.com,"🇺🇲 美国节点"
@@ -32,7 +32,7 @@
 - DOMAIN,wwjtv.jzpf.top,"♻️ 自动选择"
 - DOMAIN,php.17186.eu.org,DIRECT
 
-# 规则集
+# ---------- ACL4SSR 规则集 ----------
 - RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list,"🎯 全球直连"
 - RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list,"🎯 全球直连"
 - RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list,"🛑 广告拦截"
@@ -65,5 +65,5 @@
 - RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list,"🎯 全球直连"
 - RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list,"🎯 全球直连"
 
-# 最终兜底
+# ---------- 最终兜底 ----------
 - MATCH,🐟 漏网之鱼
