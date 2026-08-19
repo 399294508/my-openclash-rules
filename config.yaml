@@ -334,7 +334,6 @@ rule-providers:
 # 策略组定义（通配符已修正）
 # ============================================================
 proxy-groups:
-  # 主策略组
   - name: "🚀 节点选择"
     type: select
     proxies:
@@ -389,7 +388,6 @@ proxy-groups:
       - "🚀 节点选择"
       - DIRECT
 
-  # 地区节点组
   - name: "🇭🇰 香港节点"
     type: url-test
     proxies:
@@ -445,7 +443,6 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-  # 功能策略组
   - name: "🛑 广告拦截"
     type: select
     proxies:
